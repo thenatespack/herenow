@@ -1,0 +1,11 @@
+:root { --bg: #0f172a; --fg: #f8fafc; --accent: #22d3ee; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--fg); font: 18px/1.5 system-ui, sans-serif; }
+main { width: min(92vw, 560px); text-align: center; }
+input, button { width: 100%; padding: 14px; margin: 6px 0; border-radius: 10px; border: 1px solid #334155; font: inherit; }
+input { background: #1e293b; color: var(--fg); }
+button { background: var(--accent); color: #0f172a; font-weight: 700; border: 0; cursor: pointer; }
+#qr { width: 100%; max-width: 480px; border-radius: 16px; background: white; }
+.bar { height: 6px; background: #1e293b; border-radius: 3px; overflow: hidden; margin-top: 12px; }
+.bar span { display: block; height: 100%; background: var(--accent); }
+#count { font-size: 3rem; }
