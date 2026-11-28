@@ -10,7 +10,7 @@ Built at the Neumont Hackathon (Nov 28, 2026) by **The Null Pointers**.
 2. The code rotates every 10 seconds (HMAC of session + time window), so a
    photo posted to Discord is useless by the time anyone opens it.
 3. Students scan, enter their ID once (remembered on the phone), and they're in.
-4. Export the list as CSV for the gradebook.
+4. Export the list as CSV for the gradebook (one click).
 
 ## Run it
 
