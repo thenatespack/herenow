@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HereNow</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="start">
+    <h1>HereNow</h1>
+    <form id="new-session">
+      <input name="course" placeholder="Course (e.g. CSC 280)" required />
+      <button>Start attendance</button>
+    </form>
+  </main>
+  <main id="projector" hidden>
+    <h2 id="course"></h2>
+    <img id="qr" alt="Scan to check in" />
+    <div class="bar"><span id="progress"></span></div>
+    <p><strong id="count">0</strong> here</p>
+  </main>
+  <script type="module" src="projector.js"></script>
+</body>
+</html>
