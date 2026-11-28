@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Check in · HereNow</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <h1>Check in</h1>
+    <form id="checkin">
+      <input name="studentId" placeholder="Student ID" required inputmode="numeric" />
+      <input name="name" placeholder="Your name" required />
+      <button>I'm here</button>
+    </form>
+    <p id="result" role="status"></p>
+  </main>
+  <script type="module">
+    const params = new URLSearchParams(location.search);
+    const saved = JSON.parse(localStorage.getItem("herenow") || "{}");
+    const form = document.getElementById("checkin");
+    form.studentId.value = saved.studentId || "";
+    form.name.value = saved.name || "";
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const body = { code: params.get("c"), studentId: form.studentId.value, name: form.name.value };
+      localStorage.setItem("herenow", JSON.stringify({ studentId: body.studentId, name: body.name }));
+      const res = await fetch(`/api/sessions/${params.get("s")}/checkin`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      document.getElementById("result").textContent = res.ok ? "You're marked present ✓" : data.error;
+    });
+  </script>
+</body>
+</html>
