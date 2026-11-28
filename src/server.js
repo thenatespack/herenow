@@ -37,5 +37,15 @@ app.get("/api/sessions/:id", (req, res) => {
   session ? res.json(session) : res.status(404).json({ error: "no such session" });
 });
 
+app.get("/api/sessions/:id/export.csv", (req, res) => {
+  const session = getSession(req.params.id);
+  if (!session) return res.status(404).send("no such session");
+  const rows = Object.entries(session.present).map(([id, p]) => [id, p.name, p.at]);
+  const csv = [["student_id", "name", "checked_in_at"], ...rows]
+    .map((r) => r.map((v) => `"${String(v).replaceAll('"', '""')}"`).join(","))
+    .join("\n");
+  res.type("text/csv").attachment(`${session.course}.csv`).send(csv);
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`HereNow on http://localhost:${PORT}`));
